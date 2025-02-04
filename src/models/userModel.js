@@ -12,7 +12,21 @@ module.exports.insertSingle = (data, callback) =>
     pool.query(SQLSTATMENT, VALUES, callback);
     }
 
-    
+function insertUser(values, callback) {
+    const [username, email, password] = values;
+
+    if (!username || !email || !password) {
+        throw new Error("Missing either username, email, or password");
+    }
+
+    pool.query(
+        "INSERT INTO user(username, email, password) VALUES (?, ?, ?)",
+        values,
+        callback
+    );
+}
+
+
 module.exports.selectAll = (callback) =>
 {
     const SQLSTATMENT = `
@@ -35,3 +49,25 @@ module.exports.updateById = (data, callback) => {
 
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
+
+function getUserByUsername(username, callback) {
+    pool.query(
+        "SELECT * FROM user WHERE username = ?",
+        [username],
+        callback
+    );
+}
+
+function checkUsernameOrEmail(username, email, callback) {
+    pool.query(
+        "SELECT * FROM user WHERE username = ? OR email = ?",
+        [username, email],
+        callback
+    );
+}
+
+module.exports = {
+    getUserByUsername,
+    insertUser,
+    checkUsernameOrEmail
+}

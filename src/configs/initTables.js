@@ -1,10 +1,44 @@
 const pool = require("../services/db");
 
 const SQLSTATEMENT = `
+
+DROP TABLE IF EXISTS user;
+
+DROP TABLE IF EXISTS FitnessChallenge;
+
+DROP TABLE IF EXISTS UserCompletion;
+
+DROP TABLE IF EXISTS pack_types;
+
+DROP TABLE IF EXISTS user_packs;
+
+DROP TABLE IF EXISTS user_cards;
+
+DROP TABLE IF EXISTS Reviews;
+
+DROP TABLE IF EXISTS cards;
+
+CREATE TABLE Reviews (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  review_amt INT NOT NULL,
+  user_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO Reviews (review_amt, user_id) VALUES
+  (5, 1),
+  (4, 2),  
+  (3, 3);
+  
 CREATE TABLE user (
-   user_id INT AUTO_INCREMENT PRIMARY KEY,
-   username VARCHAR(255),
-   skillpoints INT DEFAULT 0
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   username VARCHAR(255) NOT NULL,
+   email VARCHAR(255) NOT NULL,
+   password VARCHAR(255) NOT NULL,
+   skillpoints INT DEFAULT 0,
+   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   last_login_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE FitnessChallenge (
@@ -33,6 +67,25 @@ CREATE TABLE pack_types (
    is_available BOOLEAN DEFAULT true
 );
 
+-- Hoops Starter Pack (Higher chance for common cards)
+INSERT INTO pack_types (name, description, price, rarity_weights, guaranteed_rarity, is_available)
+VALUES 
+('Hoops Starter Pack', 'An entry-level hoops pack perfect for new collectors and players, with more common base cards.', 
+50, '["Common": 70, "Uncommon": 20, "Rare": 7, "Epic": 3, "Legendary": 0]', 'Common', true);
+
+-- All-Star Showcase Pack (Balanced chances for rare and epic players)
+INSERT INTO pack_types (name, description, price, rarity_weights, guaranteed_rarity, is_available)
+VALUES 
+('All-Star Showcase Pack', 'A pack featuring top rising stars and established players with a higher 
+chance for rare and epic cards.', 120, '["Common": 50, "Uncommon": 20, "Rare": 20, "Epic": 10, "Legendary": 0]', 'Rare', true);
+
+-- Champion Pack (Higher chances for epic and legendary players)
+INSERT INTO pack_types (name, description, price, rarity_weights, guaranteed_rarity, is_available)
+VALUES 
+('Champion Pack', 'A premium pack featuring legendary players from the 
+basketball world, with a high chance of epic and legendary cards.', 200, 
+'["Common": 30, "Uncommon": 10, "Rare": 20, "Epic": 30, "Legendary": 10]', 'Legendary', true);
+
 CREATE TABLE user_packs (
    user_pack_id INT AUTO_INCREMENT PRIMARY KEY,
    user_id INT,
@@ -52,7 +105,12 @@ CREATE TABLE cards (
 CREATE TABLE user_cards (
     user_card_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    card_id INT,
+    card_id INT ,
+    player_name VARCHAR(255) NOT NULL,
+    position VARCHAR(50),
+    team VARCHAR(255),
+    rarity VARCHAR(50),
+    overall_rating INT,
     obtained_from_pack INT,
     obtained_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -73,18 +131,18 @@ INSERT INTO cards (player_name, position, team, rarity, overall_rating) VALUES
 
 INSERT INTO cards (player_name, position, team, rarity, overall_rating) VALUES
 ('Stephen Curry', 'PG', 'Golden State Warriors', 'epic', 96),
-('Kevin Durant', 'SF', 'Phoenix Suns', 'epic', 95),
+('Kevin Durant', 'PF', 'Phoenix Suns', 'epic', 95),
 ('Giannis Antetokounmpo', 'PF', 'Milwaukee Bucks', 'epic', 95);
 
 INSERT INTO cards (player_name, position, team, rarity, overall_rating) VALUES
 ('Damian Lillard', 'PG', 'Milwaukee Bucks', 'rare', 90),
-('Jayson Tatum', 'SF', 'Boston Celtics', 'rare', 89),
-('Joel Embiid', 'C', 'Philadelphia 76ers', 'rare', 91);
+('Jayson Tatum', 'SF', 'Boston Celtics', 'rare', 91),
+('Joel Embiid', 'C', 'Philadelphia 76ers', 'rare', 93);
 
 INSERT INTO cards (player_name, position, team, rarity, overall_rating) VALUES
-('Tyler Herro', 'SG', 'Miami Heat', 'common', 85),
-('Jordan Poole', 'SG', 'Washington Wizards', 'common', 82),
-('Tyrese Maxey', 'PG', 'Philadelphia 76ers', 'common', 84);`;
+('Tyler Herro', 'SG', 'Miami Heat', 'common', 84),
+('Jordan Poole', 'SG', 'Washington Wizards', 'common', 85),
+('Tyrese Maxey', 'SG', 'Philadelphia 76ers', 'common', 87);`;
 
 
 pool.query(SQLSTATEMENT, (error, results, fields) => {

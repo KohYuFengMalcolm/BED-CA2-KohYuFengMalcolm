@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel.js");
+const pool = require('../services/db');
 
 module.exports.createNewUser = (req, res, next) => {
     if (!req.body.username) {
@@ -188,3 +189,28 @@ module.exports.checkPlayerBelongsToUser = (req, res, next) => {
     });
 };
 
+// Add this function to your existing userController.js
+exports.getUserSkillpoints = (req, res) => {
+    const { user_id } = req.params;
+    
+    // Add logging to debug
+    console.log('Fetching skillpoints for user:', user_id);
+    
+    pool.query(
+        'SELECT skillpoints FROM user WHERE id = ?', // using 'id' as per your schema
+        [user_id],
+        (error, results) => {
+            if (error) {
+                console.error('Database error:', error);
+                return res.status(500).json({ message: 'Error fetching skillpoints' });
+            }
+            
+            if (!results || results.length === 0) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            
+            console.log('Found skillpoints:', results[0]);
+            res.json({ skillpoints: results[0].skillpoints });
+        }
+    );
+};

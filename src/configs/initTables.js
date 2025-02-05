@@ -63,28 +63,27 @@ CREATE TABLE pack_types (
    description TEXT,
    price INT,
    rarity_weights TEXT,
-   guaranteed_rarity VARCHAR(50),
    is_available BOOLEAN DEFAULT true
 );
 
 -- Hoops Starter Pack (Higher chance for common cards)
-INSERT INTO pack_types (name, description, price, rarity_weights, guaranteed_rarity, is_available)
+INSERT INTO pack_types (name, description, price, rarity_weights, is_available)
 VALUES 
 ('Hoops Starter Pack', 'An entry-level hoops pack perfect for new collectors and players, with more common base cards.', 
-50, '["Common": 70, "Uncommon": 20, "Rare": 7, "Epic": 3, "Legendary": 0]', 'Common', true);
+50, '{"Common": 80, "Rare": 15, "Epic": 5, "Legendary": 0}', true);
 
 -- All-Star Showcase Pack (Balanced chances for rare and epic players)
-INSERT INTO pack_types (name, description, price, rarity_weights, guaranteed_rarity, is_available)
+INSERT INTO pack_types (name, description, price, rarity_weights, is_available)
 VALUES 
 ('All-Star Showcase Pack', 'A pack featuring top rising stars and established players with a higher 
-chance for rare and epic cards.', 120, '["Common": 50, "Uncommon": 20, "Rare": 20, "Epic": 10, "Legendary": 0]', 'Rare', true);
+chance for rare and epic cards.', 120, '{"Common": 50, "Rare": 20, "Epic": 30, "Legendary": 0}', true);
 
 -- Champion Pack (Higher chances for epic and legendary players)
-INSERT INTO pack_types (name, description, price, rarity_weights, guaranteed_rarity, is_available)
+INSERT INTO pack_types (name, description, price, rarity_weights, is_available)
 VALUES 
 ('Champion Pack', 'A premium pack featuring legendary players from the 
 basketball world, with a high chance of epic and legendary cards.', 200, 
-'["Common": 30, "Uncommon": 10, "Rare": 20, "Epic": 30, "Legendary": 10]', 'Legendary', true);
+'{"Common": 20, "Rare": 25, "Epic": 35, "Legendary": 20}', true);
 
 CREATE TABLE user_packs (
    user_pack_id INT AUTO_INCREMENT PRIMARY KEY,

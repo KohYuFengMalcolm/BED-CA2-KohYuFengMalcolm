@@ -17,22 +17,3 @@ exports.getPackTypePrice = (id) => {
             });
     });
 };
-
-exports.createPackType = (packData, callback) => {
-    const query = `
-        INSERT INTO pack_types 
-        (name, description, price, rarity_weights, guaranteed_rarity, is_available) 
-        VALUES (?, ?, ?, ?, ?, ?)
-    `;
-    
-    const values = [
-        packData.name,
-        packData.description || null,
-        packData.price,
-        packData.rarity_weights,
-        packData.guaranteed_rarity || null,
-        packData.is_available !== undefined ? packData.is_available : true
-    ];
-
-    pool.query(query, values, callback);
-};

@@ -67,6 +67,9 @@ module.exports.updateUserById = (req, res, next) => {
 //////////////////////////////////////////////////////
 // CONTROLLER FOR LOGIN
 //////////////////////////////////////////////////////
+const jwt = require("jsonwebtoken"); // Ensure JWT is required
+const secretKey = "aiufhybdieoruwvfhnzdopw"; // Replace with your actual secret key
+
 module.exports.login = (req, res, next) => {
     const { username, password } = req.body;
 
@@ -90,11 +93,18 @@ module.exports.login = (req, res, next) => {
 
         res.locals.hash = user.password;
         res.locals.userId = user.id;
-        res.locals.username = user.username;  // Store username for token generation
-        next();
+        res.locals.username = user.username;  
+
+        // ✅ Generate JWT token
+        const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: "1h" });
+
+        // ✅ Return both token & user_id
+        return res.json({
+            token: token,
+            id: user.id
+        });
     });
 };
-
 
 //////////////////////////////////////////////////////
 // CONTROLLER FOR REGISTER

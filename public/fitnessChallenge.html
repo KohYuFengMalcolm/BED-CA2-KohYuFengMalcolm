@@ -73,6 +73,39 @@
             </div>
         </div>
     </nav>
+    <div class="challenge-container">
+        <div class="header">
+            <h1>Fitness Challenges</h1>
+            <p>Complete challenges to earn skillpoints!</p>
+        </div>
+        
+        <div id="challenges-list">
+            <!-- Challenges will be populated here -->
+            <div class="loading">Loading challenges...</div>
+        </div>
+    
+        <!-- Add this form where it makes sense in your HTML file -->
+        <div class="create-challenge-container">
+            <h2>Create Challenge</h2>
+            <form id="create-challenge-form">
+                <input
+                    type="text"
+                    id="challenge-name"
+                    placeholder="Enter challenge name"
+                />
+                <input
+                    type="number"
+                    id="skillpoints"
+                    placeholder="Enter skillpoints"
+                    min="0"
+                />
+                <button type="button" onclick="createChallenge()">Create Challenge</button>
+            </form>
+            <div class="form-footer">
+                <p>All fields are required.</p>
+            </div>
+        </div>
+    </div>
     <script src="js/queryCmds.js" type="text/javascript"></script>
     <script src="js/fitnessChallenge.js" type="text/javascript"></script>
     <script src="js/getCurrentURL.js" type="text/javascript"></script>

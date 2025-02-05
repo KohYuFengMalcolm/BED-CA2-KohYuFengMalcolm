@@ -347,3 +347,250 @@ h1 {
     text-align: center;
     border: 1px solid rgba(244, 67, 54, 0.3);
 }
+
+.challenge-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styling for the challenge card container */
+.challenge-card {
+    background-color: #141625; /* Dark background for card */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Challenge Name */
+.challenge-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #e98074; /* Warm color */
+}
+
+/* Skillpoints Info */
+.skillpoints {
+    font-size: 14px;
+    color: #b3b3b3;
+    margin-bottom: 15px;
+}
+
+/* Attempt Button */
+.attempt-button {
+    padding: 10px 24px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.attempt {
+    background-color: #2196f3;
+    color: white;
+}
+
+.attempt:hover {
+    background-color: #1976d2;
+    box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+}
+
+.completed {
+    background-color: #43a047;
+    color: white;
+}
+
+.completed:hover {
+    background-color: #388e3c;
+    box-shadow: 0 2px 4px rgba(67, 160, 71, 0.3);
+}
+
+/* Edit and Delete Buttons */
+.edit-button,
+.delete-button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+    color: white;
+    background-color: #f57c00;
+}
+
+.edit-button:hover {
+    background-color: #e65100;
+}
+
+.delete-button {
+    background-color: #f7504d;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Button Layout (Horizontal) */
+.challenge-card button {
+    margin-right: 10px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* Header Styling */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.header h1 {
+    color: #ffffff;
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.header p {
+    color: #b3b3b3;
+    font-size: 16px;
+}
+
+/* Loading Message */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #b3b3b3;
+    font-style: italic;
+}
+
+/* Subtle animation for status changes */
+.attempt-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.attempt-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.attempt-button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(100, 100);
+        opacity: 0;
+    }
+}
+
+/* User Skillpoints Styling */
+.user-skillpoints {
+    color: white;
+}
+
+/* Create Challenge Form Styling */
+.create-challenge-container {
+    background-color: #141625; /* Dark background */
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.create-challenge-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e98074; /* Warm color for title */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-challenge-container input,
+.create-challenge-container button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: #141625;
+    color: white;
+    font-size: 16px;
+}
+
+.create-challenge-container input:focus,
+.create-challenge-container button:focus {
+    outline: none;
+    border-color: #2196f3;
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+}
+
+.create-challenge-container button {
+    background-color: #2196f3;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-challenge-container button:hover {
+    background-color: #1976d2;
+}
+
+.create-challenge-container .form-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+/* Success and Error Messages */
+.create-challenge-container .alert {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.create-challenge-container .alert.success {
+    background-color: #43a047;
+    color: white;
+}
+
+.create-challenge-container .alert.error {
+    background-color: #e53935;
+    color: white;
+}
+

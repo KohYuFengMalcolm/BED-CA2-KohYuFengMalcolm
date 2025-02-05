@@ -33,7 +33,7 @@ module.exports.updateById = (data, callback) => {
 
 module.exports.checkCreator = (challenge_id, callback) => {
     const SQLSTATEMENT = `
-        SELECT creator_id 
+        SELECT challenge_id, creator_id 
         FROM fitnesschallenge 
         WHERE challenge_id = ?
     `;
@@ -41,7 +41,6 @@ module.exports.checkCreator = (challenge_id, callback) => {
     
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
-
 module.exports.deleteById = (data, callback) =>
     {
         const SQLSTATMENT = `
@@ -55,7 +54,7 @@ module.exports.deleteById = (data, callback) =>
 
 module.exports.insertSingle2 = (data, callback) => {
     const SQLSTATEMENT = `
-        INSERT INTO UserCompletion (challenge_id, user_id, completed, creation_date, notes)
+        INSERT INTO userCompletion (challenge_id, user_id, completed, creation_date, notes)
         VALUES (?, ?, ?, ?, ?);
     `;
     const VALUES = [
@@ -71,7 +70,7 @@ module.exports.insertSingle2 = (data, callback) => {
 module.exports.validateIds = (userId, challengeId, callback) => {
     const SQLSTATEMENT = `
         SELECT 
-            (SELECT COUNT(*) FROM User WHERE user_id = ?) as userExists,
+            (SELECT COUNT(*) FROM User WHERE id = ?) as userExists,
             (SELECT COUNT(*) FROM FitnessChallenge WHERE challenge_id = ?) as challengeExists;
     `;
     pool.query(SQLSTATEMENT, [userId, challengeId], (error, results) => {
@@ -86,19 +85,35 @@ module.exports.getChallengeSkillpoints = (challengeId, callback) => {
     const SQLSTATEMENT = "SELECT skillpoints FROM FitnessChallenge WHERE challenge_id = ?";
     pool.query(SQLSTATEMENT, [challengeId], (error, results) => {
         if (error) return callback(error);
+        
+        if (results.length === 0) {
+            return callback(new Error(`Challenge with ID ${challengeId} not found`));
+        }
 
-        const skillpoints = results.length > 0 ? results[0].skillpoints : 0;
-        callback(null, skillpoints);
+        callback(null, results[0].skillpoints);
     });
 };
 
 module.exports.updateUserSkillpoints = (userId, skillpoints, callback) => {
     const SQLSTATEMENT = `
-        UPDATE User
+        UPDATE user
         SET skillpoints = skillpoints + ?
-        WHERE user_id = ?;
+        WHERE id = ?;
     `;
-    pool.query(SQLSTATEMENT, [skillpoints, userId], callback);
+    pool.query(SQLSTATEMENT, [skillpoints, userId], (error, results) => {
+        if (error) {
+            console.error('Error in updating skillpoints:', error);
+            callback(error);
+        } else {
+            console.log(`Skillpoints updated for user ${userId}:`, results);
+            callback(null, results);
+        }
+    });
+};
+
+module.exports.getSkillpoints = (userId, callback) => {
+    const query = "SELECT skillpoints FROM user WHERE id = ?";
+    pool.query(query, [userId], callback);
 };
 
 module.exports.selectById = (data, callback) =>

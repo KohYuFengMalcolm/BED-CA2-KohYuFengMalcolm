@@ -3,14 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("responseStatus:", responseStatus);
     console.log("responseData:", responseData);
     if (responseStatus == 200) {
-      // Check if login was successful
-      if (responseData.token) {
-        // Store the token in local storage
-        localStorage.setItem("token", responseData.token);
-        // Redirect or perform further actions for logged-in user
-        window.location.href = "profile.html";
+      if (responseData.token && responseData.id) {  // ✅ Ensure both exist
+          localStorage.setItem("token", responseData.token);
+          localStorage.setItem("user_id", responseData.id);  // ✅ Store user ID
+          console.log("User ID saved:", responseData.id); // ✅ Debug log
+  
+          window.location.href = "profile.html";
+      } else {
+          console.error("Login response missing user ID:", responseData);
       }
-    } else {
+  } else {
       warningCard.classList.remove("d-none");
       warningText.innerText = responseData.message;
     }

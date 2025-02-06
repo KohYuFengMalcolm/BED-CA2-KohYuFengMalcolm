@@ -18,7 +18,7 @@ const imageUrls = {
     "Tyrese Maxey": "https://img.2kdb.net/lu-6PcbzVtD2q0Tc58J2WnDBV4vab3BjnnK1RFVyWps/s:640:0/f:webp/q:75/cb:1731442869137/plain/https%3A%2F%2F2kdb.net%2Fstorage%2Fimages%2Fplayers%2F24%2F2461502.png"
 };
 const rarityStyles = {
-'common': { color: '#00a600', border: '2px solid #00a600', background: 'linear-gradient(145deg, #008800, #00a600)' },
+    'common': { color: '#00a600', border: '2px solid #00a600', background: 'linear-gradient(145deg, #008800, #00a600)' },
     'rare': { color: '#0070dd', border: '2px solid #0070dd', background: 'linear-gradient(145deg, #0055aa, #0070dd)' },
     'epic': { color: '#a335ee', border: '2px solid #a335ee', background: 'linear-gradient(145deg, #8228bd, #a335ee)' },
     'legendary': { color: '#ff8000', border: '2px solid #ff8000', background: 'linear-gradient(145deg, #cc6600, #ff8000)' }
@@ -83,24 +83,13 @@ const displayPacks = (packs) => {
         const packElement = document.createElement('div');
         packElement.className = 'pack-card';
 
-        let rarityWeights = {};
-        try {
-            if (pack.rarity_weights) {
-                rarityWeights = typeof pack.rarity_weights === 'string' 
-                    ? JSON.parse(pack.rarity_weights.replace(/'/g, '"'))
-                    : pack.rarity_weights;
-            }
-        } catch (e) {
-            console.warn('Error parsing rarity weights', e);
-        }
-
         packElement.innerHTML = `
             <div class="pack-content">
                 <img src="${imageUrls[pack.name] || '/images/default-pack.png'}" 
                      alt="${pack.name}" class="pack-image">
                 <h3>${pack.name}</h3>
                 <p>${pack.description || 'No description available'}</p>
-                <p>Price: ${pack.price} skillpoints</p>
+                <p class="pack-price">Price: ${pack.price} skillpoints</p>
                 <button class="buy-button" data-pack-id="${pack.pack_type_id}">
                     Purchase Pack
                 </button>
@@ -179,7 +168,6 @@ const displayUserPacks = (packs) => {
 
     packsList.innerHTML = '';
 
-    // Filter out opened packs
     const unopenedPacks = packs.filter(pack => !pack.is_opened);
 
     if (!unopenedPacks.length) {
@@ -237,26 +225,24 @@ const showCards = (cards) => {
 
     revealedCards.innerHTML = cards.map(card => {
         const rarityStyle = rarityStyles[card.rarity.toLowerCase()];
-        
         return `
-            <div class="card-reveal" style="border: ${rarityStyle.border}">
-                <span class="card-rating">OVR ${card.overall_rating}</span>
-                <span class="card-rarity" style="background: ${rarityStyle.background}; color: white;">
+            <div class="card">
+                <div class="card-rarity" style="background: ${rarityStyle.background}">
                     ${card.rarity.toUpperCase()}
-                </span>
-                <h3 style="color: ${rarityStyle.color}">${card.player_name}</h3>
-                <div class="card-details">
-                    <p>Position: ${card.position}</p>
-                    <p>Team: ${card.team}</p>
                 </div>
+                <div class="card-image">
+                    <img src="${imageUrls[card.player_name] || '/images/default-player.png'}" 
+                         alt="${card.player_name}">
+                </div>
+                <div class="card-name">${card.player_name}</div>
+                <div class="card-team">Team: ${card.team}</div>
             </div>
         `;
     }).join('');
 
     revealDialog.style.display = 'block';
     
-    // Add animation to cards
-    const cardElements = document.querySelectorAll('.card-reveal');
+    const cardElements = document.querySelectorAll('.card');
     cardElements.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'scale(0.8)';

@@ -116,7 +116,7 @@ async function loadReviews() {
 // Display reviews
 function displayReviews(reviews) {
     const reviewsList = document.getElementById('reviewsList');
-    reviewsList.innerHTML = '<h2>All Reviews</h2>';
+    reviewsList.innerHTML = '<h2 style="color: #ff8000;">All Reviews</h2>';
     
     // Create grid container
     const gridContainer = document.createElement('div');

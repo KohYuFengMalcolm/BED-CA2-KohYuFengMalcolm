@@ -70,7 +70,7 @@ body {
 .sub-title {
     text-align: center;
     color: #848f95;
-    margin-top: 300px;
+    margin-top: 100px;
 }
 
 #cardContainer {
@@ -79,6 +79,80 @@ body {
     max-width: 1200px;
     padding: 20px;
     padding-left: 84px;
+}
+/* Welcome Section Styles */
+.welcome-section {
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.welcome-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #ff8000;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                 0 0 20px rgba(255, 128, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.welcome-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+    padding: 15px 20px;
+    background: rgba(20, 22, 37, 0.7);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 128, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation for title */
+@keyframes titleGlow {
+    0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 128, 0, 0.3); }
+    50% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 128, 0, 0.5); }
+    100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 128, 0, 0.3); }
+}
+
+.welcome-title {
+    animation: titleGlow 3s infinite;
+}
+
+.success-container {
+    background-color: #141625;
+    border-radius: 15px;
+    border: 2px solid #ff8000;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.success-title {
+    color: #ff8000;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.success-message {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.success-redirect {
+    color: #b3b3b3;
+    font-size: 16px;
 }
 
 .card-grid {
@@ -131,78 +205,138 @@ body {
 }
 
 /* Container for the packs */
-#packList {
+#packList, 
+#userPacksList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    justify-content: center;
     padding: 20px;
+    padding-bottom: 400px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #040614;
 }
 
-/* Individual pack card styling */
 .pack-card {
-    background: #141625;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
+    background: #1a1a1a;
+    border-radius: 15px;
+    border: 2px solid #ff8000;
     padding: 15px;
-    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+    background-color: #141625; /* Match body background */
 }
 
 .pack-card:hover {
     transform: translateY(-5px);
 }
 
-.pack-body img {
-    width: 100%;
-    height: 420px; /* Set a fixed height for uniform size */
-    object-fit: cover; /* Ensures images maintain aspect ratio and fill the space */
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.pack-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.pack-text {
-    font-size: 0.9rem;
-    color: #ededed;
-    margin-bottom: 10px;
-}
-
-.btn {
-    display: inline-block;
-    background: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-.btn:hover {
-    background: #0056b3;
-}
-
-h1, h2 {
-    color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-h1 {
+.pack-content {
+    position: relative;
     text-align: center;
-    margin-bottom: 30px;
+    background-color: #141625; /* Match body background */
+}
+
+.pack-content img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin: 10px 0;
+    transition: transform 0.3s ease;
+}
+
+.pack-card:hover .pack-content img {
+    transform: scale(1.05);
+}
+
+.pack-content h3 {
+    color: #ff8000;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.pack-content p {
+    color: #ffffff;
+    font-size: 16px;
+    margin: 10px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.buy-button {
+    background: #ff8000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.buy-button:hover {
+    background: #c36100;
+}
+
+/* Price display */
+.pack-price {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 2;
+}
+
+/* Rarity information */
+.pack-rarity {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff8000;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 2;
+}
+
+/* Page title styling */
+h1 {
+    color: #ff8000;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 30px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* No packs message */
+.no-packs {
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 40px;
+    background-color: #141625;
+    border: 2px solid #ff8000;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Review Form Styling */
 #reviewForm {
-    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -212,6 +346,7 @@ h1 {
 
 #reviewForm h2 {
     margin-top: 0;
+    color: #ff8000;
 }
 
 .star-rating {
@@ -689,4 +824,169 @@ h1 {
 
 .close-reveal-button:hover {
     background-color: #45a049;
+}
+
+.collection-stats {
+    background: #121723;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    color: white;
+}
+
+/* Grid Layouts */
+.collection-grid,
+.pack-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #141625;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 2px solid #ff8000;
+}
+
+.card-name {
+    color: #ff8000 !important;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.card-team {
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 5px;
+    opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.card-ovr {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.card-quantity {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.card-image {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-quantity {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 2;
+}
+.card-rating {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card-rating::before {
+    content: 'OVR';
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.card-rarity {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: white;
+}
+
+.card-details {
+    color: #ffffff; /* Changed from #ccc to white */
+    margin-top: 10px;
+    font-size: 16px; /* Increased font size */
+    font-weight: 500; /* Added some weight */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Added text shadow for better contrast */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.card-details p {
+    margin: 5px 0; /* Add some spacing between lines */
+}
+
+#collection {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.no-cards {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2em;
+    color: #666;
 }

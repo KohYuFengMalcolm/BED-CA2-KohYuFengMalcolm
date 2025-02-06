@@ -209,7 +209,7 @@ async function renderChallenges() {
     const userInfo = document.createElement("div");
     userInfo.className = "user-info";
     userInfo.innerHTML = `
-        <h2>Welcome!</h2>
+        <h2 style="color: #f57c00;">Welcome!</h2>
         <p id="user-skillpoints" style="color: white;"><strong>Skillpoints:</strong> Loading...</p>
     `;
     container.appendChild(userInfo);

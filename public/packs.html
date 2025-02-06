@@ -1,78 +1,63 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+ <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-    crossorigin="anonymous"
-  />
-
-        <!-- CSS Files -->
-        <link href="css/style.css" rel="stylesheet" />
-        <link href="css/color.css" rel="stylesheet" />
-     
-    <title>Basketball Cards</title>
+    
+    <!-- Google Font Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
+          crossorigin="anonymous">
+    
+    <!-- CSS Files -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/color.css" rel="stylesheet">
+    
+    <!-- Inline font style -->
     <style>
-        .pack-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
+        body {
+            font-family: 'Rajdhani', sans-serif;
         }
         
-        .pack-card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
+        .nav-link,
+        .navbar-brand,
+        .btn {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
         }
         
-        .pack-image {
-            max-width: 200px;
-            height: auto;
-        }
-        
-        .buy-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .nav-bar {
-            background-color: #333;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            margin-right: 20px;
-        }
-        
-        #skillPointsDisplay {
-            float: right;
-            color: white;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
         }
     </style>
-</head>
-<body>
+    
+    <title>Basketball Cards</title>
+ </head>
+ <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-                <img src="basketball.png" alt="Basketball Sprite" class="basketball-icon"
-                    class="logo img-fluid" />
+                <img src="basketball.png" 
+                     alt="Basketball Sprite" 
+                     class="basketball-icon logo img-fluid">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            
+            <button class="navbar-toggler" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Left side links -->
                 <ul class="navbar-nav me-auto">
@@ -98,7 +83,7 @@
                         <a class="nav-link" href="review.html">Leave a review!</a>
                     </li>
                 </ul>
-    
+                
                 <!-- Right side links -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -112,20 +97,23 @@
                     </li>
                     <li class="nav-item">
                         <div class="btn-nav">
-                            <a id="registerButton" class="btn text-bg-dark btn-small navbar-btn" href="/register.html">Register!</a>
+                            <a id="registerButton" class="btn text-bg-dark btn-small navbar-btn" 
+                               href="/register.html">Register!</a>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <div id="packList" class="pack-container">
         <!-- Packs will be dynamically inserted here -->
     </div>
 
+    <!-- Scripts -->
     <script src="js/queryCmds.js" type="text/javascript"></script>
     <script src="js/Packs.js" type="text/javascript"></script>
     <script src="js/getCurrentURL.js" type="text/javascript"></script>
     <script src="js/userNavbarToggle.js" type="text/javascript"></script>
-</body>
+ </body>
 </html>

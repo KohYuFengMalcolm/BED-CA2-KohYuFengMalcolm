@@ -45,10 +45,11 @@ module.exports.generateToken = (req, res, next) => {
 //////////////////////////////////////////////////////
 // MIDDLEWARE FUNCTION FOR SENDING JWT TOKEN
 //////////////////////////////////////////////////////
-module.exports.sendToken = (req, res, next) => {
+exports.sendToken = (req, res) => {
     res.status(200).json({
-        message: res.locals.message,
         token: res.locals.token,
+        id: res.locals.userId,  // Include the user ID
+        message: res.locals.message
     });
 };
 

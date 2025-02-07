@@ -16,6 +16,72 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/color.css" rel="stylesheet" />
   </head>
+  <style>
+    body {
+    background-color: #070714; /* Dark background */
+    font-family: 'Rajdhani', sans-serif;
+    color: #ffffff; /* White text */
+}
+
+.container {
+    background-color: #070714; /* Slightly lighter black */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(255, 140, 0, 0.2); /* Orange glow */
+}
+
+h3 {
+    color: #ff8000; /* Orange title */
+    font-weight: bold;
+    text-transform: uppercase; /* Optional for a bold look */
+}
+
+label {
+    color: #f5a623; /* Lighter orange for labels */
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: #222222; /* Dark input fields */
+    color: #ffffff;
+    border: 1px solid #ff8000; /* Orange border */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    background-color: #222222;
+    color: #ffffff;
+    border-color: #ff9800; /* Brighter orange focus */
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+.btn-primary {
+    background-color: #f57c00;
+    border: none;
+    color: #000000;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 70px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #ff9800; /* Lighter orange */
+    color: #000000;
+}
+
+.card.border-danger {
+    border-color: #ff5722; /* Reddish-orange */
+}
+
+.card-body.text-danger {
+    color: #ff5722;
+}
+
+
+  </style>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
@@ -55,9 +121,6 @@
     
                 <!-- Right side links -->
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a id="profileButton" href="/profile.html" class="nav-link">Profile</a>
-                    </li>
                     <li class="nav-item">
                         <a id="logoutButton" href="#" class="nav-link">Logout</a>
                     </li>

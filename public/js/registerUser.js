@@ -11,13 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
-    // Perform signup logic
     if (password === confirmPassword) {
-      // Passwords match, proceed with signup
-      console.log("Signup successful");
-      console.log("Username:", username);
-      console.log("Email:", email);
-      console.log("Password:", password);
       warningCard.classList.add("d-none");
 
       const data = {
@@ -30,12 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("responseStatus:", responseStatus);
         console.log("responseData:", responseData);
         if (responseStatus == 200) {
-          // Check if signup was successful
-          if (responseData.token) {
-            // Store the token in local storage
+          if (responseData.token && responseData.id) {  // ✅ Check for both token and id
+            // Store both token and user_id
             localStorage.setItem("token", responseData.token);
-            // Redirect or perform further actions for logged-in user
+            localStorage.setItem("user_id", responseData.id);  // ✅ Store the user ID
+            console.log("User ID saved:", responseData.id); // Debug log
+            
             window.location.href = "profile.html";
+          } else {
+            console.error("Registration response missing token or user ID:", responseData);
+            warningCard.classList.remove("d-none");
+            warningText.innerText = "Registration error: Missing user data";
           }
         } else {
           warningCard.classList.remove("d-none");
@@ -43,13 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       };
 
-      // Perform signup request
       fetchMethod(currentUrl + "/register", callback, "POST", data);
-
-      // Reset the form fields
       signupForm.reset();
     } else {
-      // Passwords do not match, handle error
       warningCard.classList.remove("d-none");
       warningText.innerText = "Passwords do not match";
     }

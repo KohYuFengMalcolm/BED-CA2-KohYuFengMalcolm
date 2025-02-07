@@ -10,13 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Token exists, show profile button and hide login and register buttons
     loginButton.classList.add("d-none");
     registerButton.classList.add("d-none");
-    profileButton.classList.remove("d-none");
     logoutButton.classList.remove("d-none");
   } else {
     // Token does not exist, show login and register buttons and hide profile and logout buttons
     loginButton.classList.remove("d-none");
     registerButton.classList.remove("d-none");
-    profileButton.classList.add("d-none");
     logoutButton.classList.add("d-none");
   }
 

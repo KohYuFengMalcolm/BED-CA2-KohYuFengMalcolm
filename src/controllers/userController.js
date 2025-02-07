@@ -122,9 +122,16 @@ module.exports.register = (req, res, next) => {
                 });
             }
 
+            // Store these for token generation
             res.locals.userId = result.insertId;
-            res.locals.username = username;  // Store username for token generation
-            res.locals.message = `User ${username} created successfully.`;
+            res.locals.username = username;
+            
+            // Add the id to the response data
+            res.locals.responseData = {
+                id: result.insertId,
+                message: `User ${username} created successfully.`
+            };
+            
             next();
         }
     );

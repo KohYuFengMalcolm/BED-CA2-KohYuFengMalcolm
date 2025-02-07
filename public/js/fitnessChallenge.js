@@ -387,6 +387,7 @@ function logout() {
     }
 
     window.location.href = "/login.html";
+    window.location.href = "/register.html"
 }
 
 

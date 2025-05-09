@@ -29,13 +29,13 @@ A Node.js application that combines fitness challenges with a basketball card co
 
 1. **Clone the Repository**
    ```bash
-   git clone [your-repository-url]
-   cd [repository-name]
+   git clone https://github.com/KohYuFengMalcolm/BED-CA2-KohYuFengMalcolm.git
+   cd BED-CA2-KohYuFengMalcolm
    ```
 
 2. **Install Dependencies**
    ```bash
-   npm install
+   npm install mysql2 express dotenv jsonwebtoken bcrypt
    ```
 
 3. **Database Setup**
@@ -59,19 +59,6 @@ A Node.js application that combines fitness challenges with a basketball card co
    npm start
    ```
 
-## API Endpoints
-
-### Fitness Challenges
-- `GET /challenges` - Get all available challenges
-- `POST /challenges/complete` - Mark a challenge as completed
-- `GET /challenges/user/:userId` - Get user's completed challenges
-
-### Card System
-- `POST /packs/purchase` - Purchase a new pack
-- `POST /packs/open/:packId` - Open a pack
-- `GET /packs/user/:userId` - Get user's pack history
-- `GET /cards/user/:userId` - Get user's card collection
-
 ## Database Schema
 
 The application uses several interconnected tables:
@@ -82,26 +69,3 @@ The application uses several interconnected tables:
 - `cards` - NBA player cards
 - `user_cards` - Track card ownership
 - `user_packs` - Track pack purchases and openings
-
-## Testing
-
-You can use Postman or any API testing tool to test the endpoints. Example test data:
-
-1. Purchase a Pack:
-```json
-POST /packs/purchase
-{
-    "user_id": 1,
-    "pack_type_id": 1
-}
-```
-
-2. Complete a Challenge:
-```json
-POST /challenges/complete
-{
-    "user_id": 1,
-    "challenge_id": 1,
-    "notes": "Completed the run in 14 minutes"
-}
-```
